@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     name: 'CEYLONÉA Ceylon Cinnamon Infusion Sticks',
     subtitle: '20 Infusion Sticks | Net Wt 40g',
     price: 4800,
-    image: '/assets/ceylonea_product_box.jpg'
+    image: './assets/ceylonea_product_box.jpg'
   };
 
   let selectedQty = 1;
