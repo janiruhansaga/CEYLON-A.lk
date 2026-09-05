@@ -1,5 +1,6 @@
 /* ==========================================================================
    CEYLONÉA — International Luxury Spice & Lifestyle Editorial Design System
+   Mobile Responsive & Touch-Optimized Styles
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
@@ -37,7 +38,7 @@
   --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset */
+/* Reset & Base */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -58,6 +59,7 @@ body {
   overflow-x: hidden;
   position: relative;
   background: var(--bg-black);
+  width: 100%;
 }
 
 /* Film Grain Overlay */
@@ -102,7 +104,7 @@ h1, h2, h3, h4, .serif {
 }
 
 .section-title {
-  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
   line-height: 1.15;
   color: var(--color-ivory);
   margin-bottom: 1.8rem;
@@ -115,7 +117,7 @@ h1, h2, h3, h4, .serif {
   width: 100%;
 }
 
-/* Glassmorphic / Editorial Card Panel */
+/* Glassmorphic Panel */
 .glass-panel {
   background: rgba(13, 34, 23, 0.4);
   backdrop-filter: blur(15px);
@@ -131,6 +133,7 @@ h1, h2, h3, h4, .serif {
   justify-content: center;
   gap: 0.8rem;
   padding: 1.1rem 2.6rem;
+  min-height: 48px;
   font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 500;
@@ -145,7 +148,7 @@ h1, h2, h3, h4, .serif {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:active {
   transform: translateY(-2px);
   box-shadow: 0 15px 35px rgba(201, 168, 101, 0.3);
   background: linear-gradient(135deg, #F0DBA5 0%, #D4AF37 100%);
@@ -154,8 +157,10 @@ h1, h2, h3, h4, .serif {
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   padding: 1rem 2.2rem;
+  min-height: 48px;
   font-family: var(--font-sans);
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -168,7 +173,7 @@ h1, h2, h3, h4, .serif {
   transition: var(--transition-smooth);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .btn-secondary:active {
   border-color: var(--color-gold);
   background: rgba(201, 168, 101, 0.08);
   color: var(--color-gold-light);
@@ -190,25 +195,26 @@ h1, h2, h3, h4, .serif {
 }
 
 .header-nav.scrolled {
-  background: rgba(5, 7, 6, 0.92);
+  background: rgba(5, 7, 6, 0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(201, 168, 101, 0.12);
-  height: 72px;
+  height: 70px;
 }
 
 .logo-brand {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.5rem);
   color: var(--color-ivory);
   text-decoration: none;
   letter-spacing: 0.18em;
   font-weight: 600;
+  z-index: 1002;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2.8rem;
+  gap: 2.5rem;
   list-style: none;
 }
 
@@ -229,7 +235,8 @@ h1, h2, h3, h4, .serif {
   background: transparent;
   border: 1px solid rgba(201, 168, 101, 0.3);
   color: var(--color-ivory);
-  padding: 0.6rem 1.2rem;
+  padding: 0.55rem 1.1rem;
+  min-height: 44px;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   cursor: pointer;
@@ -258,9 +265,26 @@ h1, h2, h3, h4, .serif {
   justify-content: center;
 }
 
-/* ==========================================================================
-   SECTION 01 — HERO
-   ========================================================================== */
+.mobile-nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 101, 0.3);
+  color: var(--color-gold);
+  width: 44px;
+  height: 44px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 1002;
+  transition: var(--transition-fast);
+}
+
+.mobile-nav-toggle:active {
+  background: rgba(201, 168, 101, 0.2);
+}
+
+/* SECTION 01 — HERO */
 #hero {
   position: relative;
   min-height: 90vh;
@@ -311,8 +335,8 @@ h1, h2, h3, h4, .serif {
 
 .hero-headline {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 6.5vw, 5.5rem);
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 6.5vw, 5.5rem);
+  line-height: 1.08;
   color: var(--color-ivory);
   margin-bottom: 1.5rem;
   font-weight: 300;
@@ -320,7 +344,7 @@ h1, h2, h3, h4, .serif {
 
 .hero-substatement {
   font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
   color: var(--color-ivory-muted);
   font-style: italic;
   margin-bottom: 3rem;
@@ -335,9 +359,7 @@ h1, h2, h3, h4, .serif {
   flex-wrap: wrap;
 }
 
-/* ==========================================================================
-   SECTION 02 — FROM THE HEART OF SRI LANKA
-   ========================================================================== */
+/* SECTION 02 — FROM THE HEART OF SRI LANKA */
 #sri-lanka {
   padding: var(--section-padding);
   background: var(--bg-black);
@@ -378,9 +400,7 @@ h1, h2, h3, h4, .serif {
   margin-bottom: 1.8rem;
 }
 
-/* ==========================================================================
-   SECTION 03 — WHAT MAKES CEYLON CINNAMON SPECIAL (4 CARDS)
-   ========================================================================== */
+/* SECTION 03 — SPECIALITY */
 #speciality {
   padding: var(--section-padding);
   background: radial-gradient(circle at 50% 50%, var(--bg-dark-emerald) 0%, var(--bg-black) 85%);
@@ -402,7 +422,7 @@ h1, h2, h3, h4, .serif {
 }
 
 .spec-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   border-color: var(--color-gold);
 }
 
@@ -448,9 +468,7 @@ h1, h2, h3, h4, .serif {
   line-height: 1.6;
 }
 
-/* ==========================================================================
-   SECTION 04 — PRODUCT EXPERIENCE / SHOWCASE
-   ========================================================================== */
+/* SECTION 04 — PRODUCT EXPERIENCE */
 #product-experience {
   padding: var(--section-padding);
   background: var(--bg-black);
@@ -494,7 +512,7 @@ h1, h2, h3, h4, .serif {
   display: inline-flex;
   align-items: center;
   border: 1px solid rgba(201, 168, 101, 0.3);
-  margin-right: 1.5rem;
+  min-height: 48px;
 }
 
 .qty-btn {
@@ -522,10 +540,11 @@ h1, h2, h3, h4, .serif {
 
 .trust-badges-row {
   display: flex;
-  gap: 2rem;
+  gap: 1.8rem;
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(201, 168, 101, 0.15);
+  flex-wrap: wrap;
 }
 
 .trust-badge-item {
@@ -543,17 +562,16 @@ h1, h2, h3, h4, .serif {
   font-size: 1.1rem;
 }
 
-/* ==========================================================================
-   CART DRAWER SLIDE-IN
-   ========================================================================== */
+/* CART DRAWER SLIDE-IN */
 .cart-drawer-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(5, 7, 6, 0.8);
+  background: rgba(5, 7, 6, 0.85);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 10000;
   opacity: 0;
   pointer-events: none;
@@ -569,8 +587,8 @@ h1, h2, h3, h4, .serif {
   position: fixed;
   top: 0;
   right: -500px;
-  width: 460px;
-  max-width: 90vw;
+  width: 450px;
+  max-width: 100vw;
   height: 100vh;
   background: var(--bg-dark-emerald);
   border-left: 1px solid rgba(201, 168, 101, 0.2);
@@ -606,8 +624,13 @@ h1, h2, h3, h4, .serif {
   background: transparent;
   border: none;
   color: var(--color-gold);
-  font-size: 1.8rem;
+  font-size: 2rem;
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-items-list {
@@ -674,9 +697,7 @@ h1, h2, h3, h4, .serif {
   margin-bottom: 1.5rem;
 }
 
-/* ==========================================================================
-   SECTION 06 — CHECKOUT EXPERIENCE MODAL
-   ========================================================================== */
+/* CHECKOUT EXPERIENCE MODAL */
 .checkout-modal-overlay {
   position: fixed;
   top: 0;
@@ -685,6 +706,7 @@ h1, h2, h3, h4, .serif {
   height: 100vh;
   background: rgba(5, 7, 6, 0.92);
   backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   z-index: 10005;
   display: flex;
   align-items: center;
@@ -692,7 +714,7 @@ h1, h2, h3, h4, .serif {
   opacity: 0;
   pointer-events: none;
   transition: var(--transition-smooth);
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .checkout-modal-overlay.active {
@@ -707,7 +729,7 @@ h1, h2, h3, h4, .serif {
   overflow-y: auto;
   background: var(--bg-dark-emerald);
   border: 1px solid rgba(201, 168, 101, 0.25);
-  padding: 3.5rem 3rem;
+  padding: 3rem 2.5rem;
   position: relative;
 }
 
@@ -733,6 +755,7 @@ h1, h2, h3, h4, .serif {
 .form-input {
   width: 100%;
   padding: 0.9rem 1rem;
+  min-height: 44px;
   background: rgba(5, 7, 6, 0.6);
   border: 1px solid rgba(201, 168, 101, 0.25);
   color: var(--color-ivory);
@@ -751,7 +774,6 @@ h1, h2, h3, h4, .serif {
   padding: 2rem;
 }
 
-/* Order Confirmation Screen */
 .order-success-view {
   text-align: center;
   padding: 3rem 1rem;
@@ -763,9 +785,7 @@ h1, h2, h3, h4, .serif {
   margin-bottom: 1.5rem;
 }
 
-/* ==========================================================================
-   SECTION 07 — HOW TO ENJOY
-   ========================================================================== */
+/* SECTION 05 — HOW TO ENJOY */
 #how-to-enjoy {
   padding: var(--section-padding);
   background: radial-gradient(circle at 50% 50%, var(--bg-forest-mid) 0%, var(--bg-black) 90%);
@@ -800,9 +820,7 @@ h1, h2, h3, h4, .serif {
   display: block;
 }
 
-/* ==========================================================================
-   SECTION 08 — FROM TREE TO INFUSION (TIMELINE)
-   ========================================================================== */
+/* SECTION 06 — FROM TREE TO INFUSION */
 #timeline {
   padding: var(--section-padding);
   background: var(--bg-black);
@@ -838,26 +856,20 @@ h1, h2, h3, h4, .serif {
   padding: 2rem 1.5rem;
 }
 
-/* ==========================================================================
-   SECTION 09 — SRI LANKAN SPIRIT
-   ========================================================================== */
+/* SECTION 07 — SRI LANKAN SPIRIT */
 #spirit {
   padding: var(--section-padding);
   background: radial-gradient(circle at 50% 50%, var(--bg-dark-emerald) 0%, var(--bg-black) 90%);
 }
 
-/* ==========================================================================
-   SECTION 10 — BEYOND BORDERS
-   ========================================================================== */
+/* SECTION 08 — BEYOND BORDERS */
 #beyond-borders {
   padding: var(--section-padding);
   background: var(--bg-black);
   text-align: center;
 }
 
-/* ==========================================================================
-   SECTION 11 — BRAND PROMISE
-   ========================================================================== */
+/* SECTION 09 — BRAND PROMISE */
 #promise {
   padding: var(--section-padding);
   background: radial-gradient(circle at 50% 50%, var(--bg-forest-mid) 0%, var(--bg-black) 90%);
@@ -870,9 +882,7 @@ h1, h2, h3, h4, .serif {
   margin-top: 3.5rem;
 }
 
-/* ==========================================================================
-   SECTION 12 — FOOTER
-   ========================================================================== */
+/* SECTION 10 — FOOTER */
 .footer-editorial {
   background: var(--bg-black);
   border-top: 1px solid rgba(201, 168, 101, 0.15);
@@ -921,13 +931,29 @@ h1, h2, h3, h4, .serif {
   color: var(--color-ivory-dark);
 }
 
-/* Responsive Media Queries */
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE MEDIA QUERIES (TABLET & MOBILE)
+   ========================================================================== */
+
+/* Laptop & Small Desktop */
 @media (max-width: 1024px) {
+  :root {
+    --section-padding: 90px 6vw;
+  }
+
   .sri-lanka-editorial-grid,
   .product-exp-grid,
   .checkout-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 3.5rem;
+  }
+
+  .product-exp-media {
+    height: 420px;
+  }
+
+  .sri-lanka-img-box {
+    height: 400px;
   }
 
   .speciality-cards-grid,
@@ -935,23 +961,131 @@ h1, h2, h3, h4, .serif {
   .timeline-grid,
   .promise-4-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
   }
 
   .footer-top-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 3rem;
   }
 }
 
-@media (max-width: 640px) {
+/* Tablet & Mobile Nav Drawer */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+    --section-padding: 70px 6vw;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85vw;
+    max-width: 380px;
+    height: 100vh;
+    background: rgba(5, 7, 6, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(201, 168, 101, 0.25);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 2.5rem;
+    gap: 2.2rem;
+    transition: var(--transition-smooth);
+    z-index: 1001;
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.9);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+  }
+
+  #hero {
+    min-height: 85vh;
+    padding: 130px 6vw 70px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cart-drawer {
+    width: 100vw;
+    max-width: 100vw;
+    padding: 2rem 1.5rem;
+  }
+
+  .checkout-container {
+    padding: 2.2rem 1.5rem;
+  }
+
+  .form-group input {
+    font-size: 1rem; /* Avoid iOS zoom on focus */
+  }
+
+  .checkout-grid {
+    gap: 2rem;
+  }
+}
+
+/* Small Mobile Devices (320px - 576px) */
+@media (max-width: 576px) {
   .speciality-cards-grid,
   .enjoy-steps-grid,
   .timeline-grid,
   .promise-4-grid,
   .footer-top-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .cart-drawer {
-    width: 100vw;
+  .product-exp-media {
+    height: 320px;
+  }
+
+  .sri-lanka-img-box {
+    height: 300px;
+  }
+
+  .trust-badges-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .qty-picker {
+    width: 100%;
+    justify-content: space-between;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  #btn-add-to-cart,
+  #btn-buy-now {
+    width: 100%;
   }
 }

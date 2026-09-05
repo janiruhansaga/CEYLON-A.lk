@@ -1,5 +1,6 @@
 /* ==========================================================================
    CEYLONÉA — Main Application & E-Commerce Controller
+   Mobile Responsive Navigation & Touch Handlers Included
    ========================================================================== */
 
 import { cartStore } from './src/store/cartStore.js';
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     name: 'CEYLONÉA Ceylon Cinnamon Infusion Sticks',
     subtitle: '20 Infusion Sticks | Net Wt 40g',
     price: 4800,
-    image: './assets/ceylonea_product_box.jpg'
+    image: 'assets/ceylonea_product_box.jpg'
   };
 
   let selectedQty = 1;
@@ -45,7 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAddToCart = document.getElementById('btn-add-to-cart');
   const btnBuyNow = document.getElementById('btn-buy-now');
 
-  // Header Scroll Effect
+  // Mobile Menu Elements
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  // 0. Header & Mobile Navigation Toggle
   const header = document.getElementById('main-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 40) {
@@ -54,6 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
       header.classList.remove('scrolled');
     }
   });
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
 
   // 1. Quantity Selector Handlers
   if (qtyMinus && qtyPlus && qtyValDisplay) {
@@ -72,18 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Cart UI Renderer
   function renderCart(cartItems) {
-    // Update count badge
     const totalCount = cartStore.getItemCount();
     if (cartBadge) cartBadge.textContent = totalCount;
 
-    // Update Subtotal
     const subtotal = cartStore.getSubtotal();
     const formattedSubtotal = `LKR ${subtotal.toLocaleString()}`;
     if (cartSubtotalVal) cartSubtotalVal.textContent = formattedSubtotal;
     if (coSubtotal) coSubtotal.textContent = formattedSubtotal;
     if (coTotal) coTotal.textContent = formattedSubtotal;
 
-    // Render Drawer Items
     if (!cartItemsContainer) return;
 
     if (cartItems.length === 0) {
@@ -105,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `).join('');
 
-      // Add remove listeners
       cartItemsContainer.querySelectorAll('.cart-item-remove').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const id = e.target.getAttribute('data-id');
@@ -114,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Render Checkout Summary Items
     if (checkoutSummaryItems) {
       checkoutSummaryItems.innerHTML = cartItems.map(item => `
         <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.8rem; color: var(--color-ivory);">
@@ -128,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Subscribe cartStore to UI renderer
   cartStore.subscribe(renderCart);
   renderCart(cartStore.getCart());
 
@@ -195,15 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
     checkoutForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      // Generate random order ref number
       const randomRef = 'CEY-' + Math.floor(100000 + Math.random() * 900000);
       if (confirmedOrderId) confirmedOrderId.textContent = randomRef;
 
-      // Show confirmation view
       checkoutFormView.style.display = 'none';
       orderConfirmationView.style.display = 'block';
 
-      // Clear cart
       cartStore.clearCart();
     });
   }
