@@ -1,0 +1,957 @@
+/* ==========================================================================
+   CEYLONÉA — International Luxury Spice & Lifestyle Editorial Design System
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+:root {
+  /* Luxury Palette */
+  --bg-black: #050706;
+  --bg-dark-emerald: #08160E;
+  --bg-forest-mid: #0D2217;
+  --bg-card: rgba(13, 34, 23, 0.5);
+
+  --color-ivory: #F7F4EB;
+  --color-ivory-muted: #D9D3C3;
+  --color-ivory-dark: #A19B8B;
+
+  --color-gold: #C9A865;
+  --color-gold-light: #E8D098;
+  --color-gold-dark: #987A3E;
+
+  --color-cinnamon: #8C492E;
+  --color-cinnamon-warm: #A65A39;
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Cinzel Decorative', 'Cormorant Garamond', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout */
+  --header-height: 85px;
+  --container-max: 1320px;
+  --section-padding: 120px 5vw;
+
+  /* Transitions */
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-black);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  background: var(--bg-black);
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F0DBA5 0%, #C9A865 50%, #987A3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: var(--color-gold);
+  margin-bottom: 1.2rem;
+  display: inline-block;
+  opacity: 0.9;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  line-height: 1.15;
+  color: var(--color-ivory);
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Glassmorphic / Editorial Card Panel */
+.glass-panel {
+  background: rgba(13, 34, 23, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(201, 168, 101, 0.15);
+  border-radius: 2px;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.1rem 2.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--bg-black);
+  background: linear-gradient(135deg, #E8D098 0%, #C9A865 100%);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(201, 168, 101, 0.3);
+  background: linear-gradient(135deg, #F0DBA5 0%, #D4AF37 100%);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-ivory);
+  background: transparent;
+  border: 1px solid rgba(201, 168, 101, 0.35);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-gold);
+  background: rgba(201, 168, 101, 0.08);
+  color: var(--color-gold-light);
+}
+
+/* Sticky Header Navigation */
+.header-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  transition: var(--transition-smooth);
+}
+
+.header-nav.scrolled {
+  background: rgba(5, 7, 6, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201, 168, 101, 0.12);
+  height: 72px;
+}
+
+.logo-brand {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-ivory);
+  text-decoration: none;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.8rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--color-ivory-muted);
+  text-decoration: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-gold);
+}
+
+.header-cart-btn {
+  background: transparent;
+  border: 1px solid rgba(201, 168, 101, 0.3);
+  color: var(--color-ivory);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: var(--transition-fast);
+}
+
+.header-cart-btn:hover {
+  background: rgba(201, 168, 101, 0.12);
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+}
+
+.cart-count-badge {
+  background: var(--color-gold);
+  color: var(--bg-black);
+  font-weight: 700;
+  font-size: 0.7rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   SECTION 01 — HERO
+   ========================================================================== */
+#hero {
+  position: relative;
+  min-height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 160px 5vw 100px;
+  overflow: hidden;
+  background: radial-gradient(circle at 60% 40%, var(--bg-forest-mid) 0%, var(--bg-black) 80%);
+}
+
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+.hero-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) contrast(1.1);
+}
+
+.hero-content-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+}
+
+.hero-origin-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid rgba(201, 168, 101, 0.3);
+  background: rgba(8, 22, 14, 0.6);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 2rem;
+}
+
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  line-height: 1.05;
+  color: var(--color-ivory);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.hero-substatement {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: var(--color-ivory-muted);
+  font-style: italic;
+  margin-bottom: 3rem;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   SECTION 02 — FROM THE HEART OF SRI LANKA
+   ========================================================================== */
+#sri-lanka {
+  padding: var(--section-padding);
+  background: var(--bg-black);
+}
+
+.sri-lanka-editorial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  align-items: center;
+}
+
+.sri-lanka-img-box {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 101, 0.2);
+}
+
+.sri-lanka-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+  filter: contrast(1.05);
+}
+
+.sri-lanka-img-box:hover img {
+  transform: scale(1.04);
+}
+
+.sri-lanka-text-box p {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: var(--color-ivory-muted);
+  margin-bottom: 1.8rem;
+}
+
+/* ==========================================================================
+   SECTION 03 — WHAT MAKES CEYLON CINNAMON SPECIAL (4 CARDS)
+   ========================================================================== */
+#speciality {
+  padding: var(--section-padding);
+  background: radial-gradient(circle at 50% 50%, var(--bg-dark-emerald) 0%, var(--bg-black) 85%);
+}
+
+.speciality-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.spec-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid rgba(201, 168, 101, 0.15);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.spec-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-gold);
+}
+
+.spec-card-img {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.spec-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.spec-card:hover .spec-card-img img {
+  transform: scale(1.08);
+}
+
+.spec-card-body {
+  padding: 2rem 1.5rem;
+}
+
+.spec-card-num {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.spec-card-body h3 {
+  font-size: 1.5rem;
+  color: var(--color-ivory);
+  margin-bottom: 0.8rem;
+}
+
+.spec-card-body p {
+  font-size: 0.9rem;
+  color: var(--color-ivory-dark);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SECTION 04 — PRODUCT EXPERIENCE / SHOWCASE
+   ========================================================================== */
+#product-experience {
+  padding: var(--section-padding);
+  background: var(--bg-black);
+}
+
+.product-exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  align-items: center;
+}
+
+.product-exp-media {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  border: 1px solid rgba(201, 168, 101, 0.2);
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8);
+}
+
+.product-exp-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.95);
+}
+
+.product-details-box {
+  padding: 1rem 0;
+}
+
+.product-price {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--color-gold-light);
+  margin: 1.5rem 0;
+}
+
+.qty-picker {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(201, 168, 101, 0.3);
+  margin-right: 1.5rem;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-ivory);
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.qty-btn:hover {
+  background: rgba(201, 168, 101, 0.15);
+  color: var(--color-gold);
+}
+
+.qty-val {
+  width: 50px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-family: var(--font-sans);
+}
+
+.trust-badges-row {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 168, 101, 0.15);
+}
+
+.trust-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--color-ivory-dark);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.trust-badge-item span {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   CART DRAWER SLIDE-IN
+   ========================================================================== */
+.cart-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 6, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+}
+
+.cart-drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -500px;
+  width: 460px;
+  max-width: 90vw;
+  height: 100vh;
+  background: var(--bg-dark-emerald);
+  border-left: 1px solid rgba(201, 168, 101, 0.2);
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem 2rem;
+  transition: var(--transition-smooth);
+  box-shadow: -20px 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.cart-drawer.active {
+  right: 0;
+}
+
+.cart-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 168, 101, 0.15);
+  padding-bottom: 1.5rem;
+}
+
+.cart-drawer-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory);
+}
+
+.cart-drawer-close {
+  background: transparent;
+  border: none;
+  color: var(--color-gold);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.cart-items-list {
+  flex: 1;
+  overflow-y: auto;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cart-item-row {
+  display: flex;
+  gap: 1.2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(201, 168, 101, 0.1);
+  align-items: center;
+}
+
+.cart-item-img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border: 1px solid rgba(201, 168, 101, 0.2);
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-ivory);
+  margin-bottom: 0.3rem;
+}
+
+.cart-item-price {
+  color: var(--color-gold-light);
+  font-size: 0.95rem;
+}
+
+.cart-item-remove {
+  background: transparent;
+  border: none;
+  color: #E76F51;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-top: 0.4rem;
+  letter-spacing: 0.1em;
+}
+
+.cart-drawer-footer {
+  border-top: 1px solid rgba(201, 168, 101, 0.15);
+  padding-top: 1.5rem;
+}
+
+.cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-ivory);
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   SECTION 06 — CHECKOUT EXPERIENCE MODAL
+   ========================================================================== */
+.checkout-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 6, 0.92);
+  backdrop-filter: blur(25px);
+  z-index: 10005;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition-smooth);
+  padding: 2rem;
+}
+
+.checkout-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.checkout-container {
+  max-width: 1000px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-dark-emerald);
+  border: 1px solid rgba(201, 168, 101, 0.25);
+  padding: 3.5rem 3rem;
+  position: relative;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 3rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-ivory-dark);
+  margin-bottom: 0.4rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: rgba(5, 7, 6, 0.6);
+  border: 1px solid rgba(201, 168, 101, 0.25);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: var(--color-gold);
+}
+
+.order-summary-box {
+  background: rgba(5, 7, 6, 0.5);
+  border: 1px solid rgba(201, 168, 101, 0.15);
+  padding: 2rem;
+}
+
+/* Order Confirmation Screen */
+.order-success-view {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.order-success-icon {
+  font-size: 3.5rem;
+  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   SECTION 07 — HOW TO ENJOY
+   ========================================================================== */
+#how-to-enjoy {
+  padding: var(--section-padding);
+  background: radial-gradient(circle at 50% 50%, var(--bg-forest-mid) 0%, var(--bg-black) 90%);
+  text-align: center;
+}
+
+.enjoy-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.enjoy-step-card {
+  padding: 3rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(201, 168, 101, 0.15);
+  transition: var(--transition-smooth);
+}
+
+.enjoy-step-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold);
+}
+
+.enjoy-step-num {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ==========================================================================
+   SECTION 08 — FROM TREE TO INFUSION (TIMELINE)
+   ========================================================================== */
+#timeline {
+  padding: var(--section-padding);
+  background: var(--bg-black);
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.timeline-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid rgba(201, 168, 101, 0.15);
+  overflow: hidden;
+}
+
+.timeline-card-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.timeline-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-card-body {
+  padding: 2rem 1.5rem;
+}
+
+/* ==========================================================================
+   SECTION 09 — SRI LANKAN SPIRIT
+   ========================================================================== */
+#spirit {
+  padding: var(--section-padding);
+  background: radial-gradient(circle at 50% 50%, var(--bg-dark-emerald) 0%, var(--bg-black) 90%);
+}
+
+/* ==========================================================================
+   SECTION 10 — BEYOND BORDERS
+   ========================================================================== */
+#beyond-borders {
+  padding: var(--section-padding);
+  background: var(--bg-black);
+  text-align: center;
+}
+
+/* ==========================================================================
+   SECTION 11 — BRAND PROMISE
+   ========================================================================== */
+#promise {
+  padding: var(--section-padding);
+  background: radial-gradient(circle at 50% 50%, var(--bg-forest-mid) 0%, var(--bg-black) 90%);
+}
+
+.promise-4-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+/* ==========================================================================
+   SECTION 12 — FOOTER
+   ========================================================================== */
+.footer-editorial {
+  background: var(--bg-black);
+  border-top: 1px solid rgba(201, 168, 101, 0.15);
+  padding: 100px 5vw 50px;
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+}
+
+.footer-col-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-links-list a {
+  color: var(--color-ivory-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+}
+
+.footer-links-list a:hover {
+  color: var(--color-gold);
+}
+
+.footer-bottom-row {
+  border-top: 1px solid rgba(201, 168, 101, 0.1);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--color-ivory-dark);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .sri-lanka-editorial-grid,
+  .product-exp-grid,
+  .checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .speciality-cards-grid,
+  .enjoy-steps-grid,
+  .timeline-grid,
+  .promise-4-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .speciality-cards-grid,
+  .enjoy-steps-grid,
+  .timeline-grid,
+  .promise-4-grid,
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-drawer {
+    width: 100vw;
+  }
+}

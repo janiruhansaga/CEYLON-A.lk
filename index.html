@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CEYLONÉA — Authentic Ceylon Cinnamon Infusion Sticks</title>
+  <meta name="description" content="CEYLONÉA offers 100% Pure Ceylon Cinnamon Infusion Sticks. Hand-crafted luxury from Sri Lanka to the world.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Film Grain Overlay -->
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- Header Navigation -->
+  <header class="header-nav" id="main-header">
+    <a href="#hero" class="logo-brand">CEYLONÉA</a>
+
+    <nav>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#sri-lanka" class="nav-link">Origin</a></li>
+        <li><a href="#speciality" class="nav-link">Speciality</a></li>
+        <li><a href="#product-experience" class="nav-link">Product</a></li>
+        <li><a href="#how-to-enjoy" class="nav-link">Ritual</a></li>
+        <li><a href="#timeline" class="nav-link">Craft</a></li>
+        <li><a href="#spirit" class="nav-link">Heritage</a></li>
+        <li><a href="#promise" class="nav-link">Promise</a></li>
+      </ul>
+    </nav>
+
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <button class="header-cart-btn" id="open-cart-btn" aria-label="Open Shopping Bag">
+        <span>BAG</span>
+        <span class="cart-count-badge" id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide-In Cart Drawer -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart Drawer">
+    <div class="cart-drawer-header">
+      <h3>YOUR BAG</h3>
+      <button class="cart-drawer-close" id="close-cart-btn">&times;</button>
+    </div>
+
+    <div class="cart-items-list" id="cart-items-container">
+      <!-- Rendered dynamically -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal-val">LKR 0</span>
+      </div>
+      <button class="btn-primary" style="width: 100%;" id="open-checkout-btn">
+        PROCEED TO CHECKOUT
+      </button>
+    </div>
+  </aside>
+
+  <!-- Checkout Experience Modal -->
+  <div class="checkout-modal-overlay" id="checkout-modal">
+    <div class="checkout-container">
+      <button class="cart-drawer-close" id="close-checkout-btn" style="position: absolute; top: 20px; right: 20px;">&times;</button>
+      
+      <div id="checkout-form-view">
+        <span class="section-label">EXPRESS CHECKOUT</span>
+        <h2 style="font-size: 2rem; color: var(--color-ivory); margin-bottom: 2rem;">Shipping & Order Details</h2>
+
+        <div class="checkout-grid">
+          <!-- Shipping Form -->
+          <form id="checkout-form">
+            <div class="form-group">
+              <label for="c-name">Full Name *</label>
+              <input type="text" id="c-name" class="form-input" placeholder="e.g. Eleanor Vance" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="c-email">Email Address *</label>
+                <input type="email" id="c-email" class="form-input" placeholder="eleanor@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="c-phone">Phone Number *</label>
+                <input type="tel" id="c-phone" class="form-input" placeholder="+94 77 123 4567" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="c-address">Delivery Address *</label>
+              <input type="text" id="c-address" class="form-input" placeholder="House No, Street Name" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="c-city">City *</label>
+                <input type="text" id="c-city" class="form-input" placeholder="Colombo / Kandy / Galle" required>
+              </div>
+              <div class="form-group">
+                <label for="c-postal">Postal Code</label>
+                <input type="text" id="c-postal" class="form-input" placeholder="00100">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1.5rem;" id="submit-order-btn">
+              PLACE ORDER (DEMO CHECKOUT)
+            </button>
+          </form>
+
+          <!-- Order Summary Side -->
+          <div class="order-summary-box">
+            <h4 style="font-family: var(--font-display); color: var(--color-gold); margin-bottom: 1.2rem;">ORDER SUMMARY</h4>
+            <div id="checkout-summary-items" style="margin-bottom: 1.5rem;">
+              <!-- Summary items rendered here -->
+            </div>
+            
+            <div style="border-top: 1px solid rgba(201, 168, 101, 0.2); padding-top: 1rem; font-size: 0.9rem; color: var(--color-ivory-muted);">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>Subtotal</span>
+                <span id="co-subtotal">LKR 0</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>Standard Delivery</span>
+                <span style="color: var(--color-gold);">FREE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 1.3rem; font-family: var(--font-serif); color: var(--color-ivory); margin-top: 1rem;">
+                <span>Total Amount</span>
+                <span id="co-total" style="color: var(--color-gold-light);">LKR 0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Confirmation State View -->
+      <div id="order-confirmation-view" class="order-success-view" style="display: none;">
+        <div class="order-success-icon">✓</div>
+        <span class="section-label">ORDER CONFIRMED</span>
+        <h2 style="font-size: 2.8rem; color: var(--color-ivory); margin-bottom: 1rem;">Thank you for choosing CEYLONÉA</h2>
+        <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-ivory-muted); max-width: 600px; margin: 0 auto 2rem;">
+          Your order has been successfully placed. We will prepare your authentic Ceylon Cinnamon Infusion Sticks with care.
+        </p>
+
+        <div style="padding: 1.5rem; background: rgba(201, 168, 101, 0.08); border: 1px solid var(--color-gold); max-width: 450px; margin: 0 auto 2.5rem;">
+          <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--color-ivory-dark);">ORDER REFERENCE NUMBER</div>
+          <div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--color-gold-light); letter-spacing: 0.15em; margin-top: 0.4rem;" id="confirmed-order-id">CEY-849201</div>
+        </div>
+
+        <button class="btn-primary" id="finish-checkout-btn">
+          RETURN TO EXPERIENCE
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Website Content Sections -->
+  <main>
+
+    <!-- SECTION 01 — HERO -->
+    <section id="hero">
+      <div class="hero-bg-image">
+        <img src="/assets/hero_cinnamon_atmosphere.jpg" alt="CEYLONÉA Ceylon Cinnamon Atmosphere">
+      </div>
+      <div class="hero-content-wrap">
+        <div class="hero-origin-tag">PURE CEYLON CINNAMON • SRI LANKA</div>
+        <h1 class="hero-headline text-gold-gradient">THE ESSENCE OF CEYLON</h1>
+        <p class="hero-substatement">
+          Pure Ceylon Cinnamon. Refined for the modern ritual.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#product-experience" class="btn-primary">Explore the Collection</a>
+          <a href="#sri-lanka" class="btn-secondary">Discover Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — FROM THE HEART OF SRI LANKA -->
+    <section id="sri-lanka">
+      <div class="container">
+        <div class="sri-lanka-editorial-grid">
+          <div class="sri-lanka-img-box">
+            <img src="/assets/sri_lanka_plantation.jpg" alt="Sri Lanka Ceylon Cinnamon Plantation">
+          </div>
+          <div class="sri-lanka-text-box">
+            <span class="section-label">HERITAGE ORIGIN</span>
+            <h2 class="section-title">From the Heart of Sri Lanka</h2>
+            <p>
+              Sri Lanka is home to one of the world's most distinctive varieties of cinnamon — authentic Ceylon Cinnamon (Cinnamomum verum).
+            </p>
+            <p>
+              Grown within the island's tropical climate and nurtured by generations of traditional knowledge, Ceylon Cinnamon carries a delicate sweet aroma, naturally warm character, and subtle refined flavor that sets it apart from all common cassia.
+            </p>
+            <p>
+              From green plantations and mist-covered hills to coastal landscapes, the spirit of Sri Lanka lives within every carefully crafted cinnamon stick.
+            </p>
+            <a href="#spirit" class="btn-secondary" style="margin-top: 1rem;">Explore Heritage</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — WHAT MAKES CEYLON CINNAMON SPECIAL -->
+    <section id="speciality">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">BOTANICAL DISTINCTION</span>
+          <h2 class="section-title">What Makes Ceylon Cinnamon Special</h2>
+        </div>
+
+        <div class="speciality-cards-grid">
+          <div class="spec-card">
+            <div class="spec-card-img">
+              <img src="/assets/cinnamon_sticks_macro.jpg" alt="Pure Ceylon Cinnamon">
+            </div>
+            <div class="spec-card-body">
+              <span class="spec-card-num">01</span>
+              <h3>PURE</h3>
+              <p>100% Pure Ceylon Cinnamon. Never blended with harsh cassia varieties.</p>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-card-img">
+              <img src="/assets/infusion_cup_ritual.jpg" alt="Natural Character">
+            </div>
+            <div class="spec-card-body">
+              <span class="spec-card-num">02</span>
+              <h3>NATURAL</h3>
+              <p>Naturally aromatic and refined, delivering delicate sweet citrus and warm floral notes.</p>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-card-img">
+              <img src="/assets/cinnamon_harvest_craft.jpg" alt="Generations of Craftsmanship">
+            </div>
+            <div class="spec-card-body">
+              <span class="spec-card-num">03</span>
+              <h3>CRAFTED</h3>
+              <p>Inspired by generations of traditional Sri Lankan craftsmanship and hand-rolling expertise.</p>
+            </div>
+          </div>
+
+          <div class="spec-card">
+            <div class="spec-card-img">
+              <img src="/assets/sri_lanka_plantation.jpg" alt="Sri Lankan Origin">
+            </div>
+            <div class="spec-card-body">
+              <span class="spec-card-num">04</span>
+              <h3>ORIGIN</h3>
+              <p>Born in the fertile soil and tropical climate of Sri Lanka, the birthplace of true cinnamon.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04 — PRODUCT EXPERIENCE / SHOPPING SECTION -->
+    <section id="product-experience">
+      <div class="container">
+        <div class="product-exp-grid">
+          <div class="product-exp-media">
+            <img src="/assets/ceylonea_product_box.jpg" alt="CEYLONÉA Ceylon Cinnamon Infusion Sticks Packaging Box">
+          </div>
+
+          <div class="product-details-box">
+            <span class="section-label">LUXURY COLLECTION</span>
+            <h2 class="section-title text-gold-gradient">CEYLONÉA</h2>
+            <p style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-ivory-muted);">
+              Ceylon Cinnamon Infusion Sticks
+            </p>
+
+            <div class="product-price">LKR 4,800</div>
+
+            <p style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-ivory-dark); line-height: 1.7; margin-bottom: 2rem;">
+              A refined collection of authentic Ceylon Cinnamon infusion sticks, created for those who appreciate natural flavor, elegant simplicity, and the heritage of Sri Lanka.
+            </p>
+
+            <div style="margin-bottom: 2rem; padding: 1.2rem; background: rgba(13, 34, 23, 0.4); border: 1px solid rgba(201, 168, 101, 0.15); display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.85rem; color: var(--color-ivory-muted);">
+              <div>• 20 Infusion Sticks</div>
+              <div>• 2g Portion Each</div>
+              <div>• Net Weight 40g</div>
+              <div>• 100% Pure Ceylon</div>
+            </div>
+
+            <!-- Quantity & Actions -->
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+              <div class="qty-picker">
+                <button class="qty-btn" id="qty-minus">-</button>
+                <span class="qty-val" id="product-qty-val">1</span>
+                <button class="qty-btn" id="qty-plus">+</button>
+              </div>
+
+              <button class="btn-primary" id="btn-add-to-cart">
+                ADD TO CART
+              </button>
+
+              <button class="btn-secondary" id="btn-buy-now">
+                BUY NOW
+              </button>
+            </div>
+
+            <div class="trust-badges-row">
+              <div class="trust-badge-item">
+                <span>✓</span> 100% Ceylon Cinnamon
+              </div>
+              <div class="trust-badge-item">
+                <span>✓</span> Sri Lankan Origin
+              </div>
+              <div class="trust-badge-item">
+                <span>✓</span> Hand Crafted
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05 — HOW TO ENJOY -->
+    <section id="how-to-enjoy">
+      <div class="container">
+        <span class="section-label">DAILY RITUAL</span>
+        <h2 class="section-title">A Simple Ritual. A Distinctive Taste.</h2>
+
+        <div class="enjoy-steps-grid">
+          <div class="enjoy-step-card">
+            <span class="enjoy-step-num">01</span>
+            <h3 style="font-size: 1.4rem; color: var(--color-ivory); margin-bottom: 0.8rem;">ONE STICK</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Place one cinnamon infusion stick into your ceramic cup.</p>
+          </div>
+
+          <div class="enjoy-step-card">
+            <span class="enjoy-step-num">02</span>
+            <h3 style="font-size: 1.4rem; color: var(--color-ivory); margin-bottom: 0.8rem;">200ml HOT WATER</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Pour freshly boiled water over the infusion stick.</p>
+          </div>
+
+          <div class="enjoy-step-card">
+            <span class="enjoy-step-num">03</span>
+            <h3 style="font-size: 1.4rem; color: var(--color-ivory); margin-bottom: 0.8rem;">INFUSE</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Allow the natural cinnamon to infuse gently for 3-5 minutes.</p>
+          </div>
+
+          <div class="enjoy-step-card">
+            <span class="enjoy-step-num">04</span>
+            <h3 style="font-size: 1.4rem; color: var(--color-ivory); margin-bottom: 0.8rem;">STIR & ENJOY</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Stir gently to unlock the full warm bouquet of Ceylon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06 — FROM TREE TO INFUSION (TIMELINE) -->
+    <section id="timeline">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">PROCESS TIMELINE</span>
+          <h2 class="section-title">From Tree to Infusion</h2>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="timeline-card">
+            <div class="timeline-card-img">
+              <img src="/assets/sri_lanka_plantation.jpg" alt="01 Grown">
+            </div>
+            <div class="timeline-card-body">
+              <span class="section-label" style="font-size: 0.65rem; margin-bottom: 0.4rem;">STAGE 01</span>
+              <h3 style="color: var(--color-ivory); margin-bottom: 0.6rem;">GROWN</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ivory-dark); line-height: 1.6;">Sri Lankan cinnamon begins its journey in fertile tropical landscapes.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-card-img">
+              <img src="/assets/cinnamon_harvest_craft.jpg" alt="02 Selected">
+            </div>
+            <div class="timeline-card-body">
+              <span class="section-label" style="font-size: 0.65rem; margin-bottom: 0.4rem;">STAGE 02</span>
+              <h3 style="color: var(--color-ivory); margin-bottom: 0.6rem;">SELECTED</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ivory-dark); line-height: 1.6;">Carefully selected inner bark is chosen for the CEYLONÉA experience.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-card-img">
+              <img src="/assets/cinnamon_sticks_macro.jpg" alt="03 Crafted">
+            </div>
+            <div class="timeline-card-body">
+              <span class="section-label" style="font-size: 0.65rem; margin-bottom: 0.4rem;">STAGE 03</span>
+              <h3 style="color: var(--color-ivory); margin-bottom: 0.6rem;">CRAFTED</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ivory-dark); line-height: 1.6;">Traditional knowledge meets modern refinement in quill rolling.</p>
+            </div>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-card-img">
+              <img src="/assets/ceylonea_product_box.jpg" alt="04 Sealed">
+            </div>
+            <div class="timeline-card-body">
+              <span class="section-label" style="font-size: 0.65rem; margin-bottom: 0.4rem;">STAGE 04</span>
+              <h3 style="color: var(--color-ivory); margin-bottom: 0.6rem;">SEALED</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ivory-dark); line-height: 1.6;">Each stick is sealed to preserve its natural aroma and delicate character.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07 — THE SRI LANKAN SPIRIT -->
+    <section id="spirit">
+      <div class="container">
+        <div class="sri-lanka-editorial-grid">
+          <div class="sri-lanka-img-box" style="height: 580px;">
+            <img src="/assets/sri_lanka_spirit_art.jpg" alt="Sri Lankan Spirit Art Illustration">
+          </div>
+          <div class="sri-lanka-text-box">
+            <span class="section-label">HERITAGE MANIFESTO</span>
+            <h2 class="section-title">More Than a Spice.<br>It's a Piece of Ceylon.</h2>
+            <p>
+              The island of Sri Lanka is a meeting point of tropical forests, mountains, oceans, traditions and generations of craftsmanship.
+            </p>
+            <p>
+              CEYLONÉA captures that spirit in a modern form. The cinnamon stick represents our natural heritage. The leaves represent the land. The waves represent our island. And the journey beyond Sri Lanka represents our vision for the world.
+            </p>
+            <div style="font-family: var(--font-display); font-size: 1.15rem; color: var(--color-gold); margin-top: 2rem; border-left: 2px solid var(--color-gold); padding-left: 1.5rem; line-height: 1.8;">
+              One island.<br>
+              One distinctive spice.<br>
+              One global story.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 08 — BEYOND BORDERS -->
+    <section id="beyond-borders">
+      <div class="container" style="max-width: 800px;">
+        <span class="section-label">GLOBAL VISION</span>
+        <h2 class="section-title text-gold-gradient">A Taste of Ceylon. Beyond Borders.</h2>
+        <p style="font-family: var(--font-serif); font-size: 1.35rem; color: var(--color-ivory-muted); line-height: 1.8;">
+          What begins in the natural landscapes of Sri Lanka can become part of everyday moments anywhere in the world. CEYLONÉA was created to share the authentic character of Ceylon Cinnamon with a global audience.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 09 — BRAND PROMISE -->
+    <section id="promise">
+      <div class="container">
+        <div style="text-align: center;">
+          <span class="section-label">OUR COMMITMENT</span>
+          <h2 class="section-title">Brand Promise</h2>
+        </div>
+
+        <div class="promise-4-grid">
+          <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
+            <h3 style="font-family: var(--font-display); color: var(--color-gold); margin-bottom: 1rem;">PURE</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">100% Pure Ceylon Cinnamon without additions.</p>
+          </div>
+
+          <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
+            <h3 style="font-family: var(--font-display); color: var(--color-gold); margin-bottom: 1rem;">NATURAL</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Nothing unnecessary. Pure natural character.</p>
+          </div>
+
+          <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
+            <h3 style="font-family: var(--font-display); color: var(--color-gold); margin-bottom: 1rem;">SRI LANKAN</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Rooted in authentic Ceylon island heritage.</p>
+          </div>
+
+          <div class="glass-panel" style="padding: 2.5rem 1.5rem; text-align: center;">
+            <h3 style="font-family: var(--font-display); color: var(--color-gold); margin-bottom: 1rem;">PREMIUM</h3>
+            <p style="font-size: 0.9rem; color: var(--color-ivory-dark);">Crafted with care from cinnamon to package.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SECTION 10 — EDITORIAL FOOTER -->
+  <footer class="footer-editorial">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <a href="#hero" class="logo-brand" style="font-size: 1.8rem; display: block; margin-bottom: 1rem;">CEYLONÉA</a>
+          <p style="font-family: var(--font-serif); font-style: italic; color: var(--color-ivory-muted); max-width: 320px; font-size: 1.05rem;">
+            "A Taste of Ceylon. Beyond Borders."
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">NAVIGATION</h4>
+          <ul class="footer-links-list">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#sri-lanka">Our Story</a></li>
+            <li><a href="#product-experience">Product</a></li>
+            <li><a href="#spirit">Heritage</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">SHOPPING</h4>
+          <ul class="footer-links-list">
+            <li><a href="#product-experience" id="ft-open-cart">View Bag</a></li>
+            <li><a href="#product-experience" id="ft-checkout">Checkout</a></li>
+            <li><a href="#promise">Brand Promise</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">CONNECT</h4>
+          <ul class="footer-links-list">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Editorial Journal</a></li>
+            <li><a href="#">Concierge Inquiry</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <div>© 2026 CEYLONÉA. All Rights Reserved. Product of Sri Lanka.</div>
+        <div>Designed for Global Appreciation</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Modules -->
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
